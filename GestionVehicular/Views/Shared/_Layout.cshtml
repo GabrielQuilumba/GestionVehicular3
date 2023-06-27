@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Gestión Vehicular</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/GestionVehiculos.styles.css" asp-append-version="true" />
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-dark bg-dark">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="offcanvas offcanvas-start bg-dark" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                            <li class="nav-item">
+                                <a class="nav-link text-warning" asp-area="" asp-controller="Home"
+                                   asp-action="Index">Home</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Módulo de Distritos
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="dropdown-item">
+                                        <a class="dropdown-item text-primary" asp-area="" asp-controller="Distritos"
+                                           asp-action="Index">Distritos</a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li class="dropdown-item">
+                                        <a class="dropdown-item text-primary" asp-area="" asp-controller="Circuitos"
+                                           asp-action="Index">Circuitos</a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li class="dropdown-item">
+                                        <a class="dropdown-item text-primary" asp-area="" asp-controller="Subcircuitos"
+                                           asp-action="Index">Subcircuitos</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Módulo de Solicitudes
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="dropdown-item">
+                                        <a class="nav-link text-primary" asp-area="" asp-controller="Mantenimientos"
+                                           asp-action="Index">Mantenimientos</a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li class="dropdown-item">
+                                        <a class="nav-link text-primary" asp-area="" asp-controller="ParteNovedades"
+                                           asp-action="Index">Partes</a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li class="dropdown-item">
+                                        <a class="nav-link text-primary" asp-area="" asp-controller="Abastecimientos"
+                                           asp-action="Index">Abastecimientos</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Módulo de Administración
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="dropdown-item">
+                                        <a class="nav-link text-primary" asp-area="" asp-controller="Roles"
+                                           asp-action="Index">Roles</a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li class="dropdown-item">
+                                        <a class="nav-link text-primary" asp-area="" asp-controller="Usuarios"
+                                           asp-action="Index">Usuarios</a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li class="dropdown-item">
+                                        <a class="nav-link text-primary" asp-area="" asp-controller="Vehiculos"
+                                           asp-action="Index">Vehículos</a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li class="dropdown-item">
+                                        <a class="nav-link text-primary" asp-area="" asp-controller="TiposMantenimiento"
+                                           asp-action="Index">Tipos de Mantenimiento</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            @*<li class="nav-item">
+                            <a class="nav-link text-warning" asp-area="" asp-controller="Vehiculos"
+                            asp-action="Index">Vehículos</a>
+                            </li>*@
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - Gestión Vehicular
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>
