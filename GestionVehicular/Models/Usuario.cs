@@ -1,7 +1,3 @@
-
-
-using System.ComponentModel;
-
 namespace GestionVehicular.Models;
 
 [Table("Usuario")]
@@ -12,6 +8,7 @@ public class Usuario
 
     [Required]
     [MaxLength(10)]
+    [MinLength(10)]
     public string Cedula { get; set; }
 
     [Required]

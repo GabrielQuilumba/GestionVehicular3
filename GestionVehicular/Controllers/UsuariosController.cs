@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GestionVehicular.Controllers;
 
+[Authorize]
 public class UsuariosController : Controller
 {
     private readonly ApplicationDbContext _context;
@@ -43,12 +44,12 @@ public class UsuariosController : Controller
     public IActionResult Create()
     {
         ViewData["RolId"] = new SelectList(_context.Roles, "RolId", "Nombre");
-        ViewData["SubcircuitoId"] = new SelectList(_context.Set<Subcircuito>(), "SubcircuitoId", "CodSubcircuito");
+        ViewData["SubcircuitoId"] = new SelectList(_context.Set<Subcircuito>(), "SubcircuitoId", "Nombre");
         return View();
     }
 
     // POST: Usuarios/Create
-    // To protect from overposting attacks, enable the specific properties you want to bind to.
+    // To protect from over posting attacks, enable the specific properties you want to bind to.
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
@@ -58,6 +59,7 @@ public class UsuariosController : Controller
         {
             usuario.EsActivo = true;
             usuario.FechaCreacion = DateTime.Now;
+            usuario.Contrasenia = BCrypt.Net.BCrypt.HashPassword(usuario.Contrasenia);
             _context.Add(usuario);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
@@ -81,7 +83,7 @@ public class UsuariosController : Controller
             return NotFound();
         }
         ViewData["RolId"] = new SelectList(_context.Roles, "RolId", "Nombre", usuario.RolId);
-        ViewData["SubcircuitoId"] = new SelectList(_context.Set<Subcircuito>(), "SubcircuitoId", "CodSubcircuito", usuario.SubcircuitoId);
+        ViewData["SubcircuitoId"] = new SelectList(_context.Set<Subcircuito>(), "SubcircuitoId", "Nombre", usuario.SubcircuitoId);
         return View(usuario);
     }
 
@@ -101,6 +103,7 @@ public class UsuariosController : Controller
         {
             try
             {
+                usuario.Contrasenia = BCrypt.Net.BCrypt.HashPassword(usuario.Contrasenia);
                 _context.Update(usuario);
                 await _context.SaveChangesAsync();
             }
